@@ -4,5 +4,12 @@
         {{ $title }}
     </x-slot>
 
-    <h1 class="fw-bold">Data Penduduk</h1>
+    <ul class="list-group">
+        @foreach ($Penduduks as $penduduk)
+            <li class="list-group-item">{{ $loop->iteration }}. {{ $penduduk->nama }} -- {{ $penduduk->email }} --
+                {{ $penduduk->nohp }} --
+                {{ $penduduk->nik }} -- {{ $penduduk->kelamin }}</li>
+        @endforeach
+
+    </ul>
 </x-app>

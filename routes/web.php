@@ -1,15 +1,11 @@
 <?php
 
+use App\Http\Controllers\PendudukController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/Penduduk', function () {
-    return view('penduduk.index', ['title' => 'penduduk']);
-});
-
-Route::get('/Penduduk/create', function () {
-    return view('penduduk.create', ['title' => 'Create student']);
-});
+Route::get('/Penduduk', [PendudukController::class, 'index']);
+Route::get('//Penduduk/create', [PendudukController::class, 'create']);
