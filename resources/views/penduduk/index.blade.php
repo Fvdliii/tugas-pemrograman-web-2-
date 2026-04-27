@@ -4,6 +4,14 @@
         {{ $title }}
     </x-slot>
 
+    @session('success')
+        <div class="alert alert-success">
+            {{ session['success'] }}
+        </div>
+    @endsession
+
+    <a class="btn btn-primary mb-3" href="{{ route('Penduduk.create') }}" role="button">Create</a>
+
     <table class="table table-bordered ">
         <thead class="table-secondary">
             <tr>
