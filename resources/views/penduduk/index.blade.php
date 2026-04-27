@@ -29,6 +29,13 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $penduduk->nama }} <a class="btn btn-warning float-end btn-sm"
                             href="{{ route('Penduduk.edit', $penduduk) }}" role="button">Edit</a>
+                        <form action="{{ route('Penduduk.destroy', $penduduk) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+
+                            <button type="submit" class="btn btn-danger btn-sm d-inline"
+                                onclick="return confirm('Apakah anda ingin menghapus data?')">Delete</button>
+                        </form>
                     </td>
                     <td>{{ $penduduk->email }}</td>
                     <td>{{ $penduduk->nohp }}</td>

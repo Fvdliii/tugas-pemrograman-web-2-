@@ -15,7 +15,8 @@ class PendudukController extends Controller
     {
         return view('penduduk.index', 
         ['title' => 'Data Penduduk',
-        'Penduduks' => Penduduk::all(),
+        'Penduduks' => Penduduk::latest()->get(),
+        'Penduduks' => Penduduk::orderBy('nama', 'asc')->get(),
         ]);
     }
 
@@ -124,6 +125,7 @@ class PendudukController extends Controller
      */
     public function destroy(Penduduk $penduduk)
     {
-        //
+        $penduduk->delete($penduduk);
+        return to_route('Penduduk.index')->withSuccess('Data Berhasil Di Hapus');
     }
 }
