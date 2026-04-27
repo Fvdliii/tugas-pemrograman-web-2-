@@ -80,7 +80,10 @@ class PendudukController extends Controller
      */
     public function edit(Penduduk $penduduk)
     {
-        //
+        return view('penduduk.edit', 
+        ['title' => 'Edit Penduduk',
+        'penduduk' => $penduduk,
+        ]);
     }
 
     /**
@@ -88,7 +91,32 @@ class PendudukController extends Controller
      */
     public function update(Request $request, Penduduk $penduduk)
     {
-        //
+        $validated = $request->validate([
+        'nama' => 'required|max:255',
+        'email' => 'required|email|max:255',
+        'nohp' => 'required|digits:12|numeric',
+        'nik' => 'required|digits:16|numeric',
+        'kelamin' => 'required|in:Laki-laki,Perempuan',
+        
+    ], [
+        'nama.required' => 'Nama harus di isi',
+        'nama.max' => 'nama tidak boleh lebih dari :max karakter',
+
+        'email.required' => 'Email Harus Di isi',
+
+        'nohp.required' => 'Nomor HP harus di isi',
+        'nohp.digits' => 'Nomor Hp tidak boleh lebih dari :digits digit',
+
+        'nik.required' => 'nik HP harus di isi',
+        'nik.digits' => 'NIK tidak boleh lebih dari :digits digit',
+
+        'kelamin.required' => 'Jenis Kelamin Anda Harus Di Isi',
+
+
+    ]);
+
+                $penduduk->update($validated);
+                return to_route('Penduduk.index')->withSuccess('Data Berhasil Di Ubah');
     }
 
     /**

@@ -6,7 +6,7 @@
 
     @session('success')
         <div class="alert alert-success">
-            {{ session['success'] }}
+            {{ session('success') }}
         </div>
     @endsession
 
@@ -27,7 +27,9 @@
             @foreach ($Penduduks as $penduduk)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $penduduk->nama }}</td>
+                    <td>{{ $penduduk->nama }} <a class="btn btn-warning float-end btn-sm"
+                            href="{{ route('Penduduk.edit', $penduduk) }}" role="button">Edit</a>
+                    </td>
                     <td>{{ $penduduk->email }}</td>
                     <td>{{ $penduduk->nohp }}</td>
                     <td>{{ $penduduk->nik }}</td>
